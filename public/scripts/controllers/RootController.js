@@ -3,5 +3,5 @@ RootController.$inject = ['$scope'];
 
 function RootController($scope){
   var vm = this;
-  console.log('woo!')
+  console.log('woo!');
 }

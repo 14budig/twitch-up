@@ -3,7 +3,7 @@ angular.module('twitch-up', ['ui.bootstrap']).controller('dateCtrl', function($s
     $scope.dt = new Date();
   };
   $scope.today();
-
+  
   $scope.clear = function() {
     $scope.dt = null;
   };
