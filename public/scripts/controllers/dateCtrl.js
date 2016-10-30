@@ -3,19 +3,20 @@ angular.module('twitch-up', ['ui.bootstrap']).controller('dateCtrl', function($s
     $scope.dt = new Date();
   };
   $scope.today();
-  
+
   $scope.clear = function() {
     $scope.dt = null;
+    console.log('clear');
   };
 
   $scope.inlineOptions = {
-    customClass: getDayClass,
+    // customClass: getDayClass,
     minDate: new Date(),
     showWeeks: true
   };
 
   $scope.dateOptions = {
-    dateDisabled: disabled,
+    // dateDisabled: disabled,
     formatYear: 'yy',
     maxDate: new Date(2020, 5, 22),
     minDate: new Date(),
@@ -23,11 +24,11 @@ angular.module('twitch-up', ['ui.bootstrap']).controller('dateCtrl', function($s
   };
 
   // Disable weekend selection
-  function disabled(data) {
-    var date = data.date,
-      mode = data.mode;
-    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-  }
+  // function disabled(data) {
+  //   var date = data.date,
+  //     mode = data.mode;
+  //   return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+  // }
 
   $scope.toggleMin = function() {
     $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
@@ -46,6 +47,7 @@ angular.module('twitch-up', ['ui.bootstrap']).controller('dateCtrl', function($s
 
   $scope.setDate = function(year, month, day) {
     $scope.dt = new Date(year, month, day);
+    console.log('woo');
   };
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
