@@ -86,6 +86,16 @@ app.get('/api/events', function(req, res){
   });
 });
 
+app.get('/api/events/:id', function(req, res){
+  var id = req.params.id;
+  db.Event.findOne({_id: id}, function(err, event){
+    if(err){
+      return console.log(err);
+    }
+    res.json(event);
+  });
+})
+
 app.post('api/events', function(req, res){
   var newEvent = new db.Event({
     name: req.body.name,

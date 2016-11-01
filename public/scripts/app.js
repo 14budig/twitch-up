@@ -10,6 +10,10 @@ function config ($routeProvider, $locationProvider) {
       templateUrl: '/templates/splash-page',
       controllerAs: 'rootCtrl',
       controller: 'RootController'
+    }).when('/events/:id', {
+      templateUrl: '/templates/event',
+      controller: 'EventController',
+      controllerAs: 'eventCtrl'
     });
 
     $locationProvider.html5Mode({
