@@ -54,31 +54,22 @@ app.get('/templates/:name', function templates(req, res) {
 
 app.get('/oauth', function(req,res){
   var sess = req.session;
-  console.log(req.query);
   if(req.query.code){
-    console.log('posting');
     request.post('https://api.twitch.tv/kraken/oauth2/token', {form:{client_id: process.env.APP_ID, client_secret: process.env.APP_SECRET, grant_type: 'authorization_code', redirect_uri:'http://localhost:3000/oauth', code: req.query.code}}, function(err, response, body){
-      console.log("woo", body);
       body = JSON.parse(body);
-      console.log(body['access_token']);
       request.get({url: 'https://api.twitch.tv/kraken/user', headers:  {'Accept': 'application/vnd.twitchtv.v3+json', 'Authorization':'OAuth '+body.access_token, 'Client-ID': process.env.APP_ID}}, function(err, response, body2){
-        console.log(err);
-        console.log(body2);
         body2 = JSON.parse(body2);
         db.User.findOne({name: body2.name}, function(err, user){
           if(!user){
             var key = encrypt(body.access_token);
             console.log(body.access_token, key);
             db.User.create({name: body2.name, key: key, scopes: body.scope},function(err, user){
-              console.log(user);
-              console.log('@@@@@@@@@@@@@@@');
               sess.name=user.name;
               res.sendFile(__dirname + '/views/index.html');
               res.cookie('name', sess.name);
             });
           }
           else{
-            console.log(user);
             sess.name=user.name;
             res.sendFile(__dirname + '/views/index.html');
             res.cookie('name', sess.name);
@@ -89,7 +80,13 @@ app.get('/oauth', function(req,res){
   }
 });
 
-app.post('/events', function(req, res){
+app.get('/api/events', function(req, res){
+  db.Event.find({}, function(err, allEvents){
+    res.json(allEvents);
+  });
+});
+
+app.post('api/events', function(req, res){
   var newEvent = new db.Event({
     name: req.body.name,
     description: req.body.description,

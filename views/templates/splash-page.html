@@ -1,0 +1,8 @@
+<h1>hello world!</h1>
+
+<div class="container" ng-repeat= 'event in rootCtrl.events | orderBy: time'>
+  <a ng-href={{"/events/"+event._id}}>{{event.name}}</a>
+  <p>{{event.game}}</p>
+  <p>{{event.description}}</p>
+  <p>{{event.time | date: 'MMM d, yyyy h:mm a' : rootCtrl.timeZone}}</p>
+</div>
