@@ -1,8 +1,13 @@
 angular.module('twitch-up').controller('RootController', RootController);
 RootController.$inject = ['eventsService','$scope'];
 
+console.log('log');
+
 function RootController(eventsService, $scope){
   var vm = this;
+  if(document.cookie.name){
+    vm.link="/events/new";
+  }
   vm.today = new Date();
   vm.timeZone = eventsService.getTimeZone();
   console.log(vm.timeZone);

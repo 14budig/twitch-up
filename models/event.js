@@ -7,7 +7,8 @@ var EventSchema = new Schema({
   game: String,
   creator: String,
   participants: [String],
-  time: Date
+  time: Date,
+  imgUrl: String
 });
 
 var Event = mongoose.model('Event', EventSchema);

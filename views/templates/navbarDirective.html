@@ -1,0 +1,14 @@
+<nav class="" ng-controller="NavbarController as navbarCtrl">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-5">
+        <h2 class="header">Twitch-Up</h2>
+      </div>
+      <div class="col-xs-6">
+        <div class="inline right"><a href="#" ng-hide="navbarCtrl.name">Login</a><a ng-href="https://www.twitch.tv/{{navbarCtrl.name}}" ng-show="{{!!navbarCtrl.name}}">{{navbarCtrl.name}}</a></div>
+      </div>
+    </div>
+    <div class="inline"></div>
+
+  </div>
+</nav>

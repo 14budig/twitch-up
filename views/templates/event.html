@@ -1,1 +1,11 @@
 hello world
+<img src="{{eventCtrl.event.imgUrl}}" alt="" /> 
+<p>{{eventCtrl.event.name}}</p>
+<p>{{eventCtrl.event.game}}</p>
+<p>{{eventCtrl.event.creator}}</p>
+<p>{{eventCtrl.event.time | date: "EEEE, MMMM d, yyyy @ HH:mm"}}</p>
+<div ng-repeat= "participant in eventCtrl.event.participants">
+  {{participant}}
+</div>
+<button class="btn btn-primary" ng-hide="(eventCtrl.event.participants.indexOf(eventCtrl.current)>-1)" ng-click="eventCtrl.join()">Join</button>
+<button class="btn btn-danger" ng-show="(eventCtrl.event.participants.indexOf(eventCtrl.current)>-1)" ng-click="eventCtrl.leave()">Leave</button>

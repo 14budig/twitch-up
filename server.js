@@ -35,7 +35,7 @@ app.use(session({
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
@@ -80,6 +80,10 @@ app.get('/oauth', function(req,res){
   }
 });
 
+app.get('/login', function(req, res){
+  res.redirect('https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=' + process.env.APP_ID + '&redirect_uri=http://localhost:3000/oauth&scope=user_read');
+});
+
 app.get('/api/events', function(req, res){
   db.Event.find({}, function(err, allEvents){
     res.json(allEvents);
@@ -94,26 +98,65 @@ app.get('/api/events/:id', function(req, res){
     }
     res.json(event);
   });
-})
+});
 
-app.post('api/events', function(req, res){
-  var newEvent = new db.Event({
-    name: req.body.name,
-    description: req.body.description,
-    game: req.body.game,
-    creator: req.body.creator,
-    participants: [req.body.creator],
-    time: new Date(req.body.time)
-  });
-
-  newEvent.save(function(err, event){
-      if (err) {
-        return console.log("save error: " + err);
+app.post('/api/events', function(req, res){
+  var game = req.body.game.split(" ").join("+")
+  request.get("https://api.twitch.tv/kraken/search/games?client_id="+process.env.APP_ID+"&q="+game+"&type=suggest", function(err, response, data){
+    console.log(err);
+    console.log(response);
+    console.log(data);
+    data = JSON.parse(data);
+    var games = data.games;
+    var image;
+    console.log(games);
+    if(games){
+      for(var i = 0; i < games.length; i++){
+        if(games[i].name.toLowerCase() === req.body.game.trim().toLowerCase()){
+          image = games[i].box.large;
+        }
       }
-      console.log("saved ", event.name);
-      // send back the book!
-      res.json(event);
+      if(!image){
+        image=games[0].box.large
+      }
+    }
+
+    var newEvent = new db.Event({
+      name: req.body.name,
+      description: req.body.description,
+      game: req.body.game,
+      creator: req.body.creator,
+      participants: [req.body.creator],
+      time: req.body.time,
+      imgUrl: image
     });
+
+    newEvent.save(function(err, event){
+        if (err) {
+          return console.log("save error: " + err);
+        }
+        console.log("saved ", event.name);
+        res.json(event);
+      });
+  });
+});
+
+app.put("/api/events/:id", function(req, res){
+  var sess = req.session;
+  if(sess.name === req.body.name){
+    db.Event.findOneAndUpdate({_id: req.params.id}, {$set:{participants: req.body.participants}},{new: true}, function(err, updated){
+      if(err){
+        return console.log.err
+      }
+      res.json(updated);
+    });
+  }
+});
+
+app.get('*', function homepage(req, res) {
+  var sess = req.session;
+  console.log(sess);
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 

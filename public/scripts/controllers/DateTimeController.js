@@ -21,7 +21,7 @@ angular.module('twitch-up').controller('DateTimeController', function ($scope, $
   };
 
   $scope.toggleMin = function() {
-    $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
+    $scope.inlineOptions.minDate = new Date();
     $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
   };
 

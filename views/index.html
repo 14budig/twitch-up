@@ -10,73 +10,51 @@
     <script type="text/javascript" src="/vendor/angular-route/angular-route.min.js"></script>
     <script src="/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/services/eventsService.js"></script>
+   <script type="text/javascript" src="/scripts/directives/navDirective.js"></script>
     <script type="text/javascript" src="/scripts/controllers/DateTimeController.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/FormController.js"></script>
     <script type="text/javascript" src="/scripts/controllers/RootController.js"></script>
     <script type="text/javascript" src="/scripts/controllers/EventController.js"></script>
-    <script type="text/javascript" src="/scripts/services/eventsService.js"></script>
+    <script type="text/javascript" src="/scripts/controllers/NavbarController.js"></script>
 
 
   </head>
 <body>
-  <a href="https://api.twitch.tv/kraken/oauth2/authorize?response_type=code&client_id=d7bqpqlcffilta92nb8vorwnbj3zvnf&redirect_uri=http://localhost:3000/oauth&scope=user_read"><h1>Hello World!</h1></a>
+  <navbar></navbar>
+  <h1><a>Hello World!</a></h1>
   {{2+2}}
-  <div ng-controller="DateTimeController">
-    <pre>Selected date is: <em>{{  dt | date:'fullDate'  }}  {{dt | date:'shortTime' }} {{dt}}</em></pre>
+  <div ng-controller="FormController as formCtrl">
+      <pre>Selected date is: <em>{{  dt | date:'fullDate'  }}  {{dt | date:'shortTime' }} {{dt}}</em></pre>
 
-    <h4>Popup</h4>
-    <div class="row">
-      <div class="col-md-6">
-        <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-      </div>
+      <div class="row">
+        <div class="col-xs-6 inline">
+          <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
 
-      <div class="col-md-6">
-        <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <label>Format: <span class="muted-text">(manual alternate <em>{{altInputFormats[0]}}</em>)</span></label> <select class="form-control" ng-model="format" ng-options="f for f in formats"><option></option></select>
-      </div>
-    </div>
+        <div class="col-xs-6 inline">
+          <div uib-timepicker ng-model="dt"  hour-step="1" minute-step="1" show-meridian="true"></div>
+        </div>
 
-    <hr />
-    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
-    <button type="button" class="btn btn-sm btn-default" ng-click="setDate(2009, 7, 24)">2009-08-24</button>
-    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
-    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button>
+        </div>
+      <p class="input-group">
+        <input type="text" ng-model="name" ng-required>
+        <input type="text" ng-model="game" ng-required>
+      </p>
+      <p>
+        description:
+      </p>
+      <textarea rows="4" cols="50" ng-model="description"></textarea>
 
-    <div uib-timepicker ng-model="dt" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
-
-    <pre class="alert alert-info">Time is: {{dt | date:'shortTime' }}</pre>
-
-    <div class="row">
-      <div class="col-xs-6">
-          Hours step is:
-        <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
-      </div>
-      <div class="col-xs-6">
-          Minutes step is:
-        <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
-      </div>
-    </div>
-
-    <hr>
-
-    <button type="button" class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
-    <button type="button" class="btn btn-default" ng-click="update()">Set to 14:00</button>
-    <button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>
+      <button class="btn btn-standard" ng-click=formCtrl.submit()>Submit</button>
 
   </div>
+
 
 
 <div class="container" ng-view>

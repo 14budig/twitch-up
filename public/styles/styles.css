@@ -1,0 +1,36 @@
+
+body{
+  font-family: Helvetica Neue,Helvetica,sans-serif;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  color: #433f4a;
+}
+
+.inline{
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.header{
+  margin: 2px;
+}
+
+.right{
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: row-reverse;
+  ms-flex-direction: row-reverse;
+  box-sizing: border-box;
+}
+
+nav{
+  margin:0;
+  height: 50px;
+  position: relative;
+  padding: 5px 0;
+  background: white;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.07),0 0 0 1px rgba(0,0,0,.2);
+  z-index: 1000;
+  box-sizing: border-box;
+}
