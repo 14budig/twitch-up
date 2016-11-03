@@ -34,3 +34,13 @@ nav{
   z-index: 1000;
   box-sizing: border-box;
 }
+
+.thumbnail-large{
+  height:800px;
+  width: 640px;
+}
+
+.thumbnail-small{
+  height:120px;
+  width: 96px;
+}

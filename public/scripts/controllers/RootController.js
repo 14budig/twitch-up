@@ -5,6 +5,7 @@ console.log('log');
 
 function RootController(eventsService, $scope){
   var vm = this;
+  vm.current=eventsService.name();
   if(document.cookie.name){
     vm.link="/events/new";
   }

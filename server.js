@@ -120,7 +120,7 @@ app.post('/api/events', function(req, res){
         image=games[0].box.large
       }
     }
-
+    image = image || 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
     var newEvent = new db.Event({
       name: req.body.name,
       description: req.body.description,

@@ -1,7 +1,7 @@
 <h1>hello world!</h1>
-
+<div class="formD" ng-show="rootCtrl.current"></div>
 <div class="container" ng-repeat= 'event in rootCtrl.events | orderBy: "time":false'>
-  <img src="{{event.imgUrl}}" alt="" class="thumbnail"/> 
+  <img src="{{event.imgUrl}}" alt="" class="thumbnail"/>
   <a ng-href={{"/events/"+event._id}}>{{event.name}}</a>
   <p>{{event.game}}</p>
   <p>{{event.description}}</p>

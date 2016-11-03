@@ -1,11 +1,66 @@
-hello world
-<img src="{{eventCtrl.event.imgUrl}}" alt="" /> 
-<p>{{eventCtrl.event.name}}</p>
-<p>{{eventCtrl.event.game}}</p>
-<p>{{eventCtrl.event.creator}}</p>
-<p>{{eventCtrl.event.time | date: "EEEE, MMMM d, yyyy @ HH:mm"}}</p>
-<div ng-repeat= "participant in eventCtrl.event.participants">
-  {{participant}}
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-5 col-xs-12 image-col">
+                <img src="{{eventCtrl.event.imgUrl}}" alt="" / class=" thumbnail">
+              </div>
+
+              <div class="col-sm-7 col-xs-12">
+                <ul class= 'list-group'>
+                  <li class="list-group-item">
+                    <h4 class='inline-header'>Event Name:</h4>
+                    <span>{{eventCtrl.event.name}}</span>
+                  </li>
+                </ul>
+                <ul class= 'list-group'>
+                  <li class="list-group-item">
+                    <h4 class='inline-header'>Game:</h4>
+                    <span>{{eventCtrl.event.game}}</span>
+                  </li>
+                </ul>
+                <ul class= 'list-group'>
+                  <li class="list-group-item">
+                    <h4 class='inline-header'>Creator:</h4>
+                    <span><a href="https://www.twitch.tv/{{eventCtrl.event.creator}}">{{eventCtrl.event.creator}}</a></span>
+                  </li>
+                </ul>
+                <ul class= 'list-group'>
+                  <li class="list-group-item">
+                    <h4 class='inline-header'>Time:</h4>
+                    <span>{{eventCtrl.event.time | date: "EEEE, MMMM d, yyyy @ HH:mm"}}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-12 col-xs-12">
+                <ul class= 'list-group'>
+                  <li class="list-group-item">
+                    <h4 class='inline-header'>Description:</h4>
+                    <span>{{eventCtrl.event.description}}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xs-12">
+                <ul class='list-group'>
+                  <li class='list-group-item'>
+                    <h4 class='inline-header'>Attendees:</h4>
+                    <div ng-repeat="participant in eventCtrl.event.participants" class='clearfix'>
+                      <div class="col-xs-4 col-sm-3 col-md-2 col-lg-1">
+                        <p><a href="https://www.twitch.tv/{{participant}}">{{participant}}</a></p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+                <button class="btn btn-primary" ng-hide="(eventCtrl.event.participants.indexOf(eventCtrl.current)>-1)" ng-click="eventCtrl.join()">Join</button>
+                <button class="btn btn-danger" ng-show="(eventCtrl.event.participants.indexOf(eventCtrl.current)>-1)" ng-click="eventCtrl.leave()">Leave</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<button class="btn btn-primary" ng-hide="(eventCtrl.event.participants.indexOf(eventCtrl.current)>-1)" ng-click="eventCtrl.join()">Join</button>
-<button class="btn btn-danger" ng-show="(eventCtrl.event.participants.indexOf(eventCtrl.current)>-1)" ng-click="eventCtrl.leave()">Leave</button>
