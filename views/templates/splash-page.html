@@ -1,9 +1,42 @@
-<h1>hello world!</h1>
-<div class="formD" ng-show="rootCtrl.current"></div>
+<div class="container">
+  <div class="formD" ng-show="rootCtrl.current"></div>
+</div>
+
+
 <div class="container" ng-repeat= 'event in rootCtrl.events | orderBy: "time":false'>
-  <img src="{{event.imgUrl}}" alt="" class="thumbnail"/>
-  <a ng-href={{"/events/"+event._id}}>{{event.name}}</a>
-  <p>{{event.game}}</p>
-  <p>{{event.description}}</p>
-  <p>{{event.time | date: 'MMM d, yyyy h:mm a' : rootCtrl.timeZone}}</p>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-3 col-sm-2 col-md-2">
+              <img src="{{event.imgUrl}}" alt=""  class="thumbnail-small thumbnail"/>
+            </div>
+            <div class="col-xs-8 col-xs-offset-1 col-sm-9">
+              <ul class= "list-group front-list">
+                <li class="list-group-item splash-list-group">
+                  <h4 class="inline">Name:   </h4>
+                  <h5 class="inline"><a ng-href={{"/events/"+event._id}}>{{event.name}}</a></h5>
+                </li>
+              </ul>
+              <ul class= "list-group front-list">
+                <li class="list-group-item splash-list-group">
+                  <h4 class="inline">Game:   </h4>
+                  <h5 class="inline">{{event.game}}</h5>
+                </li>
+              </ul>
+            </ul>
+            <ul class= "list-group front-list">
+              <li class="list-group-item splash-list-group">
+                <h4 class="inline">Creator:   </h4>
+                <h5 class="inline">{{event.creator}}</h5>
+              </li>
+            </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

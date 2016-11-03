@@ -1,5 +1,5 @@
 <div ng-controller="FormController as formCtrl">
-    <pre>Selected date is: <em>{{  dt | date:'fullDate'  }}  {{dt | date:'shortTime' }} {{dt}}</em></pre>
+    <pre>Selected date is: <em>{{  dt | date:'fullDate'  }}  {{dt | date:'shortTime' }} </em></pre>
 
     <div class="row">
       <div class="col-xs-6 inline">
@@ -23,7 +23,7 @@
     <p>
       description:
     </p>
-    <textarea rows="4" cols="50" ng-model="description"></textarea>
+    <textarea class="form-desc" ng-model="description"></textarea>
 
     <button class="btn btn-standard" ng-click=formCtrl.submit()>Submit</button>
 

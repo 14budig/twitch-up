@@ -10,6 +10,27 @@ body{
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
+  margin-right: 10px;
+}
+
+.front-list{
+  margin-bottom: 5px;
+}
+
+h5.inline{
+  margin: 0 auto;
+  margin-bottom: 0;
+}
+
+.splash-list-group{
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+
+
+.header a{
+  color: #7d5bbe;
 }
 
 .header{
@@ -41,6 +62,22 @@ nav{
 }
 
 .thumbnail-small{
+  margin-top: 15px;
+  margin-bottom: 15px;
   height:120px;
   width: 96px;
 }
+
+a:hover{
+  text-decoration: none;
+}
+
+.form-button{
+  float:right;
+}
+
+.form-desc{
+  display: block;
+  width: 90%;
+}
+/*#7d5bbe*/
