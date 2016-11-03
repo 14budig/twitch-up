@@ -11,35 +11,37 @@
 
               <div class="col-sm-7 col-xs-12">
                 <ul class= 'list-group'>
-                  <li class="list-group-item">
+                  <li class="list-group-item clearfix">
                     <h4 class='inline-header'>Event Name:</h4>
-                    <span>{{eventCtrl.event.name}}</span>
+                    <div  class="col-xs-12">
+                      <p>{{eventCtrl.event.name}}</p>
+                    </div>
                   </li>
                 </ul>
                 <ul class= 'list-group'>
-                  <li class="list-group-item">
+                  <li class="list-group-item clearfix">
                     <h4 class='inline-header'>Game:</h4>
-                    <span>{{eventCtrl.event.game}}</span>
+                    <p class="col-xs-12">{{eventCtrl.event.game}}</p>
                   </li>
                 </ul>
                 <ul class= 'list-group'>
-                  <li class="list-group-item">
+                  <li class="list-group-item clearfix">
                     <h4 class='inline-header'>Creator:</h4>
-                    <span><a href="https://www.twitch.tv/{{eventCtrl.event.creator}}">{{eventCtrl.event.creator}}</a></span>
+                    <span class="col-xs-12"><a href="https://www.twitch.tv/{{eventCtrl.event.creator}}">{{eventCtrl.event.creator}}</a></span>
                   </li>
                 </ul>
                 <ul class= 'list-group'>
-                  <li class="list-group-item">
+                  <li class="list-group-item clearfix">
                     <h4 class='inline-header'>Time:</h4>
-                    <span>{{eventCtrl.event.time | date: "EEEE, MMMM d, yyyy @ HH:mm"}}</span>
+                    <span class="col-xs-12">{{eventCtrl.event.time | date: "EEEE, MMMM d, yyyy @ HH:mm"}}</span>
                   </li>
                 </ul>
               </div>
               <div class="col-sm-12 col-xs-12">
                 <ul class= 'list-group'>
-                  <li class="list-group-item">
+                  <li class="list-group-item clearfix">
                     <h4 class='inline-header'>Description:</h4>
-                    <span>{{eventCtrl.event.description}}</span>
+                    <span class="col-xs-12">{{eventCtrl.event.description}}</span>
                   </li>
                 </ul>
               </div>
