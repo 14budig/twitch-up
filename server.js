@@ -25,9 +25,11 @@ function decrypt(text){
 
 var db = require('./models');
 
+var sessionDB = process.env.MONGODB_URI || "mongodb://localhost/twitch-up";
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    store: new MongoStore({url: "mongodb://localhost/twitch-up"}),
+    store: new MongoStore({url: sessionDB}),
     resave: true,
     saveUninitialized: false
 }));
