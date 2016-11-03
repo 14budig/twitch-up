@@ -85,7 +85,8 @@ app.get('/login', function(req, res){
 });
 
 app.get('/api/events', function(req, res){
-  db.Event.find({}, function(err, allEvents){
+  //only get those starting 5 minutes ago or later
+  db.Event.find({time:{$gte:new Date(Date.now()-300000)}}, function(err, allEvents){
     res.json(allEvents);
   });
 });
