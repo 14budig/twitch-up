@@ -2,8 +2,13 @@
   <div class="formD" ng-show="rootCtrl.current"></div>
 </div>
 
-
-<div class="container" ng-repeat= 'event in rootCtrl.events | orderBy: "time":false'>
+<div class="container">
+  <label class=" inline control-label">Search</label>
+  <div class="inline">
+    <input ng-model="searchText">
+  </div>
+</div>
+<div class="container" ng-repeat= 'event in rootCtrl.events | filter: searchText | orderBy: "time":false'>
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
